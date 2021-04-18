@@ -1,4 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import "tailwindcss/tailwind.css";
+import TodoList from "./components/TodoList";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+
+app.component("todo-list", TodoList);
+
+app.mount("#app");
