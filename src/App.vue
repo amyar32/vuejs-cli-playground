@@ -6,7 +6,7 @@
       <hisab></hisab>
       <dark-toggler
         :isDark="isDark"
-        message="Toggle"
+        message="Mode"
         @toggle-dark="toggleDark"
       ></dark-toggler>
       <todo-list
