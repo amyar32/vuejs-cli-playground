@@ -105,3 +105,23 @@ export const waktuSholat = function(
 // const bujurTempat = degToDec(107, 34, 0);
 // const bujurDaerah = degToDec(105, 0, 0);
 // const ikhtiyat = degToDec(0, 1, 0);
+
+export class WaktuSholat {
+  constructor(
+    lintangTempat,
+    deklinasiMatahari,
+    tinggiMatahari,
+    eot,
+    bujurTempat,
+    bujurDaerah,
+    ikhtiyat
+  ) {
+    this.lintangTempat = lintangTempat;
+    this.deklinasiMatahari = deklinasiMatahari;
+    this.tinggiMatahari = tinggiMatahari;
+    this.eot = eot;
+    this.bujurTempat = bujurTempat;
+    this.bujurDaerah = bujurDaerah;
+    this.ikhtiyat = ikhtiyat;
+  }
+}
