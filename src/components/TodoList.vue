@@ -6,7 +6,7 @@
       class="flex p-10 w-full h-auto bg-blue-200 dark:bg-gray-300 filter shadow-md rounded"
     >
       <button
-        class="btn bg-blue-500 dark:bg-gray-100 dark:text-gray-800 hover:bg-blue-400 hover:scale-110 transform transition duration-400 ease-out "
+        class="btn bg-blue-500 dark:bg-gray-100 dark:text-gray-800 hover:bg-blue-400 transform transition duration-400 ease-out "
         @click="toggleShow"
       >
         Show
@@ -20,7 +20,20 @@
 
 <script>
 export default {
-  props: ["title", "subTitle"],
+  // props: ["title", "subTitle"],
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    subTitle: {
+      type: String,
+      default: "TodoList App using VueJs and TailwindCSS",
+      // validator : function(value) {
+      //   return some logic
+      // }
+    },
+  },
   data() {
     return {
       todoList: [{ message: "Modol" }, { message: "Makan" }],
