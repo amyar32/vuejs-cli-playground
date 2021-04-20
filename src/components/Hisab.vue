@@ -177,7 +177,7 @@ export default {
         (this.eot = [0, 0, 54]),
         (this.bujurTempat = [107, 34, 0]),
         (this.bujurDaerah = [105, 0, 0]),
-        (this.ikhtiyat = [0, 1, 0]);
+        (this.ikhtiyat = [0, 2, 0]);
     },
 
     calculate() {
