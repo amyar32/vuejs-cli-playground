@@ -201,11 +201,15 @@ export default {
         this.maghrib.waktuSholat = maghrib.waktuSholat();
 
         this.isya.sudutWaktu = isya.sudutWaktu();
-        this.isya.meridiaPass = isya.meridianPass();
+        this.isya.meridianPass = isya.meridianPass();
         this.isya.penjumlahanSudut = isya.penjumlahanSudut();
         this.isya.selisihSudut = isya.selisihSudut();
         this.isya.waktuSholat = isya.waktuSholat();
 
+        this.shubuh.sudutWaktu = shubuh.sudutWaktu();
+        this.shubuh.meridianPass = shubuh.meridianPass();
+        this.shubuh.penjumlahanSudut = shubuh.penjumlahanSudut();
+        this.shubuh.selisihSudut = shubuh.selisihSudut();
         this.shubuh.waktuSholat = shubuh.waktuSholat();
       }
     },
