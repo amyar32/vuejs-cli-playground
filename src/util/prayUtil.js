@@ -1,13 +1,5 @@
 // Utility ini dibuat oleh Amin Yarits Firdaus
-// Suatu kelas untuk membantu dalam otomatisasi perhitugngan waktu sholat
-
-export const degToDec = function(d, m, s) {
-  if (Object.is(d, -0)) {
-    m = Math.abs(m) * -1;
-    s = Math.abs(s) * -1;
-  }
-  return d + m / 60 + s / 3600;
-};
+// Suatu kelas untuk membantu dalam otomatisasi perhitungan waktu sholat
 
 export class WaktuSholat {
   constructor(
@@ -32,6 +24,14 @@ export class WaktuSholat {
   // Method Dasar Pembantu
   // =====================
 
+  static degToDec = function(d, m, s) {
+    if (Object.is(d, -0)) {
+      m = Math.abs(m) * -1;
+      s = Math.abs(s) * -1;
+    }
+    return d + m / 60 + s / 3600;
+  };
+
   degToDec(d, m, s) {
     if (Object.is(d, -0)) {
       m = Math.abs(m) * -1;
@@ -46,12 +46,11 @@ export class WaktuSholat {
     let hour = Math.floor(decimal);
     let minute = Math.floor(sisaMinute);
     let second = Math.floor(sisaSecond);
-    console.log(minute);
 
     if (second >= 30) {
       return `${hour} : ${minute + 2}`;
-    } else if (minute == 59) {
-      return `${hour + 1} : 00`;
+      // } else if (minute == 59) {
+      //   return `${hour + 1} : 00`;
     } else {
       return `${hour} : ${minute + 1}`;
     }
@@ -101,6 +100,9 @@ export class WaktuSholat {
   // 3. Penjumlahan Sudut Waktu dengan Meridian Pass
   // ===============================================
   penjumlahanSudut() {
+    if (this.tinggiMatahari === -20) {
+      return this.meridianPass() - this.sudutWaktu();
+    }
     return this.sudutWaktu() + this.meridianPass();
   }
 
@@ -116,8 +118,5 @@ export class WaktuSholat {
     return this.decToDeg(
       this.penjumlahanSudut() - this.selisihSudut() + this.ikhtiyat
     );
-    // if (sholat.toLowerCase() === "maghrib") {
-    //   return decToDeg(penjumlahanSudut - selisihSudut + ikhtiyat);
-    // }
   }
 }
