@@ -9,10 +9,7 @@
         message="Mode"
         @toggle-dark="toggleDark"
       ></dark-toggler>
-      <todo-list
-        title="Holy Todo List"
-        sub-title="Todo list app by using VueJs and Tailwind CSS"
-      ></todo-list>
+      <my-form></my-form>
     </div>
   </div>
 </template>
