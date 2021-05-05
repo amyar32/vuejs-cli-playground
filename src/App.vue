@@ -4,12 +4,8 @@
     <div
       class="h-screen w-screen bg-gray-100 dark:bg-black transition duration-400 ease-out overflow-auto"
     >
-      <dark-toggler
-        :isDark="isDark"
-        message="Mode"
-        @toggle-dark="toggleDark"
-      ></dark-toggler>
-      <my-form></my-form>
+      <!-- <dark-toggler message="Mode" @toggle-dark="toggleDark"></dark-toggler> -->
+      <parent></parent>
     </div>
   </div>
 </template>
