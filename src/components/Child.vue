@@ -1,15 +1,17 @@
 <template>
-  <div class="grid grid-cols-1 justify-items-center">
-    <div class="mt-20 p-8 bg-gray-400">
-      <h1 class="text-xl font-semibold">Friend Contact {{ favoriteText }}</h1>
-      <button @click="toggleVisible">{{ buttonText }}</button>
-      <button @click="toggleFavorite">Toggle Favorite</button>
-      <ul v-if="isVisible" class="list-disc">
-        <li>Name : {{ name }}</li>
-        <li>Number : {{ phoneNumber }}</li>
-        <li>Email : {{ email }}</li>
-      </ul>
-    </div>
+  <div>
+    <h1 class="text-xl font-semibold">{{ name }} {{ favoriteText }}</h1>
+    <button class="bg-gray-200 px-4 py-1" @click="toggleVisible">
+      {{ buttonText }}
+    </button>
+    <button class="bg-gray-200 px-4 py-1" @click="toggleFavorite">
+      Toggle Favorite
+    </button>
+    <ul v-if="isVisible" class="list-disc">
+      <li>Name : {{ name }}</li>
+      <li>Number : {{ phoneNumber }}</li>
+      <li>Email : {{ email }}</li>
+    </ul>
   </div>
 </template>
 
@@ -49,6 +51,22 @@ export default {
       //   validator: function(value) {
       //     return value === true || value === false;
       //   },
+    },
+  },
+
+  // simple version of validating custom emits
+  //   emits: ["toggle-favorite"],
+
+  //advance version
+  emits: {
+    // custom event di bawah harus ada {id} yang di pass
+    // validasi {id} yang masuk
+    "toggle-favorite": function(id) {
+      if (id) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
   data() {
