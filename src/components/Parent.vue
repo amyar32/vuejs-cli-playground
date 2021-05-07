@@ -1,17 +1,15 @@
 <template>
   <div class="mt-20">
-    <!-- di bawah adalah contoh penggunaan element khusus `slot` -->
-    <!-- singkatnya, kita bisa menyimpan component di custom component -->
-    <base-card v-for="friend in friends" :key="friend.id"
-      ><child
-        :id="friend.id"
-        :name="friend.name"
-        :phone-number="friend.phoneNumber"
-        :email="friend.email"
-        :favorite="friend.favorite"
-        @toggle-favorite="toggleFavorite"
-      ></child
-    ></base-card>
+    <child
+      v-for="friend in friends"
+      :key="friend.id"
+      :id="friend.id"
+      :name="friend.name"
+      :phone-number="friend.phoneNumber"
+      :email="friend.email"
+      :favorite="friend.favorite"
+      @toggle-favorite="toggleFavorite"
+    ></child>
   </div>
 </template>
 
@@ -23,12 +21,11 @@
 
 // di bawah adalah penggunaan local component
 // component tidak diregister secara global, tapi local
-import BaseCard from "./BaseCard.vue";
 import Child from "./Child.vue";
 
 export default {
   // registering local component
-  components: { Child, BaseCard },
+  components: { Child },
 
   data() {
     return {
