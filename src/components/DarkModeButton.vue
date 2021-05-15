@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .btn {
   @apply px-6 py-1 text-white font-bold shadow-md rounded-xl;
 }

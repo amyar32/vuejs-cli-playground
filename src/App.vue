@@ -6,12 +6,17 @@
     >
       <!-- <dark-toggler message="Mode" @toggle-dark="toggleDark"></dark-toggler> -->
       <parent></parent>
+
+      <!-- penggunaan dynamic component -->
+      <dynamic-component></dynamic-component>
     </div>
   </div>
 </template>
 
 <script>
+import DynamicComponent from "./components/DynamicComponent";
 export default {
+  components: { DynamicComponent },
   data() {
     return {
       isDark: false,
