@@ -8,7 +8,11 @@
         >
       </div>
       <p v-if="isLoading">Loading</p>
-      <ul v-else>
+      <p v-else-if="isError">Error</p>
+      <p v-else-if="!isLoading && (!results || results.length === 0)">
+        No Data
+      </p>
+      <ul v-else-if="!isLoading && results && results.length > 0">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -32,7 +36,8 @@ export default {
   data() {
     return {
       results: [],
-      isLoading: false
+      isLoading: false,
+      isError: false
     };
   },
   methods: {
@@ -57,6 +62,11 @@ export default {
             });
           }
           this.results = results;
+        })
+        .catch(err => {
+          this.isLoading = false;
+          this.isError = true;
+          console.log(err);
         });
     }
   },
