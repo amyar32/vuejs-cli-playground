@@ -15,7 +15,9 @@ const router = createRouter({
     { path: '/teams', component: TeamsList },
     { path: '/users', component: UserList },
     //:teamId disebut dynamic segment
-    { path: '/teams/:teamId', component: TeamMembers }
+    // dengan menambahkan opsi props:true, mmaka paramater bisa dipakai sebagai data
+    // dengan nama teamId di component nya
+    { path: '/teams/:teamId', component: TeamMembers, props: true }
   ]
   // linkActiveClass: 'active' ==> rename active class css yang dipake router. default : router-link-active
 });
