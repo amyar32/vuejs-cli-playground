@@ -14,11 +14,19 @@ const router = createRouter({
   routes: [
     // { path: '/', redirect: '/teams' }, atau pake alias
     {
+      name: 'teams',
       path: '/teams',
       component: TeamsList,
       alias: '/',
       // nested routes
-      children: [{ path: ':teamId', component: TeamMembers, props: true }]
+      children: [
+        {
+          name: 'team-members',
+          path: ':teamId',
+          component: TeamMembers,
+          props: true
+        }
+      ]
     },
     { path: '/users', component: UserList },
     //:teamId disebut dynamic segment
