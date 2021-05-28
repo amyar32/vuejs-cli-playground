@@ -12,12 +12,16 @@ const router = createRouter({
 
   // tell/regist router what component to be routed
   routes: [
-    { path: '/teams', component: TeamsList },
+    // { path: '/', redirect: '/teams' }, atau pake alias
+    { path: '/teams', component: TeamsList, alias: '/' },
     { path: '/users', component: UserList },
     //:teamId disebut dynamic segment
     // dengan menambahkan opsi props:true, mmaka paramater bisa dipakai sebagai data
     // dengan nama teamId di component nya
-    { path: '/teams/:teamId', component: TeamMembers, props: true }
+    // singkatnya "passing params as props"
+    { path: '/teams/:teamId', component: TeamMembers, props: true },
+    // catchall unamed url
+    { path: '/:notFound(.*)', redirect: '/teams' }
   ]
   // linkActiveClass: 'active' ==> rename active class css yang dipake router. default : router-link-active
 });
