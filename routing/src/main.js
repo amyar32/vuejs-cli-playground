@@ -18,6 +18,10 @@ const router = createRouter({
     {
       name: 'teams',
       path: '/teams',
+
+      //META HERE
+      // bisa di akses di global nav guard (to.meta.needAuth)
+      meta: { needAuth: true },
       // rendering multiple routes
       // ada di app.vue <router-view name="footer">
       components: { default: TeamsList, footer: TeamFooter },
