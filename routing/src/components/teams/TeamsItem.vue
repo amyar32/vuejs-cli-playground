@@ -10,10 +10,16 @@
 <script>
 export default {
   // masukan prop id untuk link akses ke /teams/:teamId
+  // query .. tanda tanya di akhir link tea ning ?sory=113
+  // untuk akses query di comp lain gunakan this.$route.query .. tdak seperti paramerter yg bisa diakses via this
   props: ['id', 'name', 'memberCount'],
   computed: {
     teamMembersLink() {
-      return { name: 'team-members', params: { teamId: this.id } };
+      return {
+        name: 'team-members',
+        params: { teamId: this.id },
+        query: { sort: 'asd' }
+      };
       // this.$router.push({ name: 'team-members', params: { teamId: this.id } });
     }
   }

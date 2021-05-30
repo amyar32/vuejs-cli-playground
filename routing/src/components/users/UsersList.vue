@@ -22,6 +22,21 @@ export default {
     doRouting() {
       this.$router.push('/teams');
     }
+  },
+  // nav guard in comp
+
+  beforeRouteUpdate() {
+    // whenever reused with new data bcs route chjange
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log('before route enter');
+    console.log(to, from);
+    next(true);
+  },
+  // pas udah pindah ke nav lain, ketahan dulu sama ini
+  beforeRouteLeave(to, from, next) {
+    console.log(to, from);
+    next(confirm('hasil dari beforeRouteLeave()'));
   }
 };
 </script>
