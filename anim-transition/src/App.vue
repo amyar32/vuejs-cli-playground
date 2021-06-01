@@ -3,10 +3,15 @@
     <div class="block" :class="{ animate: isBlockAnimated }"></div>
     <button @click="animateBlock">Animate</button>
   </div>
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
+
+  <!-- ketika pakai element transition di modal di bawah, maka kelas animate nya akan jatuh kesana -->
+  <transition name="modal"
+    ><base-modal @close="hideDialog" :open="dialogIsVisible">
+      <p>This is a test dialog!</p>
+      <button @click="hideDialog">Close it!</button>
+    </base-modal></transition
+  >
+
   <div class="container">
     <!-- vue came to help animation -->
     <!-- transition element hanya boleh punya satu child -->
@@ -131,6 +136,7 @@ button:active {
   transform: translateY(30px);
 } */
 /* define animation */
+
 @keyframes slide-scale {
   0% {
     transform: translateX(0) scale(1);
