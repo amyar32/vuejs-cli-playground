@@ -12,6 +12,16 @@
     </base-modal></transition
   >
 
+  <!-- DUA ELEMEN DALAM SATU ELEMEN TRANSITION? HOW?  -->
+  <!-- else if  -->
+  <!-- mode out in in out, susunan meng-animasi  -->
+  <div class="container">
+    <transition name="btn" mode="out-in"
+      ><button @click="showUsers" v-if="!isUsersVisible">Show</button>
+      <button @click="hideUsers" v-else>Hide</button></transition
+    >
+  </div>
+
   <div class="container">
     <!-- vue came to help animation -->
     <!-- transition element hanya boleh punya satu child -->
@@ -30,10 +40,17 @@ export default {
     return {
       isBlockAnimated: false,
       dialogIsVisible: false,
-      isParagrafShown: false
+      isParagrafShown: false,
+      isUsersVisible: false
     };
   },
   methods: {
+    showUsers() {
+      this.isUsersVisible = true;
+    },
+    hideUsers() {
+      this.isUsersVisible = false;
+    },
     animateBlock() {
       this.isBlockAnimated = !this.isBlockAnimated;
     },
@@ -136,6 +153,24 @@ button:active {
   transform: translateY(30px);
 } */
 /* define animation */
+
+.btn-enter-from,
+.btn-leave-to {
+  opacity: 0;
+}
+
+.btn-enter-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.btn-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.btn-enter-to,
+.btn-leave-from {
+  opacity: 1;
+}
 
 @keyframes slide-scale {
   0% {
