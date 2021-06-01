@@ -44,14 +44,14 @@ dialog {
 }
 
 .modal-enter-active {
-  animation: modal 0.3s ease-out;
+  animation: modal 0.1s ease-out;
 }
 
 .modal-enter-to {
 }
 
 .modal-leave-active {
-  animation: modal 0.3s ease-out reverse;
+  animation: modal 0.1s ease-out reverse;
 }
 
 @keyframes modal {

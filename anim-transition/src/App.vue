@@ -5,12 +5,10 @@
   </div>
 
   <!-- ketika pakai element transition di modal di bawah, maka kelas animate nya akan jatuh kesana -->
-  <transition name="modal"
-    ><base-modal @close="hideDialog" :open="dialogIsVisible">
-      <p>This is a test dialog!</p>
-      <button @click="hideDialog">Close it!</button>
-    </base-modal></transition
-  >
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
+    <p>This is a test dialog!</p>
+    <button @click="hideDialog">Close it!</button>
+  </base-modal>
 
   <!-- DUA ELEMEN DALAM SATU ELEMEN TRANSITION? HOW?  -->
   <!-- else if  -->
@@ -26,7 +24,21 @@
     <!-- vue came to help animation -->
     <!-- transition element hanya boleh punya satu child -->
     <!-- menambahkan css utility classes  -->
-    <transition name="para"><p v-if="isParagrafShown">Hello</p></transition>
+    <!-- transition event before-enter blabla -->
+    <!-- css prop false membuat css jadi tidak bekejra but better performance -->
+    <transition
+      name="para"
+      :css="false"
+      @before-enter="beforeEnter"
+      @after-enter="afterEnter"
+      @enter="enter"
+      @befor-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
+      ><p v-if="isParagrafShown">Hello</p></transition
+    >
     <button @click="toggleParagraf">Toggle Paragraf</button>
   </div>
   <div class="container">
@@ -41,10 +53,61 @@ export default {
       isBlockAnimated: false,
       dialogIsVisible: false,
       isParagrafShown: false,
-      isUsersVisible: false
+      isUsersVisible: false,
+      enterInterval: null,
+      leaveInterval: null
     };
   },
   methods: {
+    // cancel while active animation occur
+    enterCancelled(el) {
+      console.log(el);
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled(el) {
+      console.log(el);
+      clearInterval(this.leaveInterval);
+    },
+    // animating with js
+    beforeEnter(el) {
+      el.style.opacity = 0;
+    },
+
+    // second arg that done
+    enter(el, done) {
+      console.log(el);
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.1;
+        round++;
+        if (round > 10) {
+          clearInterval(this.enterInterval);
+          // after enter jd dieksekusi setelah method done()
+          done();
+        }
+      }, 20);
+    },
+    afterEnter(el) {
+      console.log(el);
+    },
+    beforeLeave(el) {
+      el.style.opacity = 1;
+    },
+    leave(el, done) {
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.1;
+        round++;
+        if (round > 10) {
+          clearInterval(this.leaveInterval);
+          // after enter jd dieksekusi setelah method done()
+          done();
+        }
+      }, 20);
+    },
+    afterLeave(el) {
+      console.log(el);
+    },
     showUsers() {
       this.isUsersVisible = true;
     },
@@ -128,10 +191,10 @@ button:active {
   transform: translateY(-30px);
 } */
 
-.para-enter-active {
+/* .para-enter-active {
   /* transition: all 0.3s ease-out; */
-  animation: slide-scale 0.3s ease-out;
-}
+/* animation: slide-scale 0.3s ease-out; */
+/* } */
 
 /* .para-enter-to {
   opacity: 1;
@@ -143,10 +206,11 @@ button:active {
   transform: translateY(0);
 } */
 
-.para-leave-active {
+/* .para-leave-active {
   /* transition: all 0.3s ease-in; */
-  animation: slide-scale 0.3s ease-out;
-}
+/* animation: slide-scale 0.3s ease-out; */
+/* } */
+*/
 
 /* .para-leave-to {
   opacity: 0;
