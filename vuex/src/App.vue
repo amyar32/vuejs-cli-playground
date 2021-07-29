@@ -3,14 +3,17 @@
   <h3>{{ counter }}</h3>
   <h3>{{ modCounter }}</h3>
   <button @click="increment">Add</button>
+  <map-getters></map-getters>
 </template>
 
 <script>
 import BaseContainer from './components/BaseContainer.vue';
+import MapGetters from './MapGetters.vue';
 
 export default {
   components: {
-    BaseContainer
+    BaseContainer,
+    MapGetters
   },
   computed: {
     counter() {
@@ -24,7 +27,12 @@ export default {
     increment() {
       // 'increment' ada di store bagian mutation, defined method di dalam mutation
       // this.$store.commit('increment', { value: 5 });
-      this.$store.commit({ type: 'increment', value: 1 });
+
+      // memanggil langsung mutation
+      // this.$store.commit({ type: 'increment', value: 1 });
+
+      // memanggil mutation lewat action, async code
+      this.$store.dispatch('increment', { value: 19 });
     }
   }
 };

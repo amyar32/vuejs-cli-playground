@@ -7,9 +7,10 @@ import App from './App.vue';
 
 // store application store
 const store = createStore({
-  // bit like data in comp
+  // bit like data in component
   // one store per application
   // di component bisa diakses dengan $store.state.counter
+  // tapi ada cara lebih better ketika mengkases state/data di bawah ini, yakni dengan getter
   state() {
     return {
       counter: 0
@@ -37,10 +38,21 @@ const store = createStore({
       }
       return currentState;
     }
+  },
+
+  // async code ketika memanggil mutations
+  actions: {
+    increment(context, payload) {
+      setTimeout(function() {
+        context.commit('increment', payload);
+      }, 3000);
+    }
   }
 });
 
 const app = createApp(App);
+
 // register store
 app.use(store);
+
 app.mount('#app');
